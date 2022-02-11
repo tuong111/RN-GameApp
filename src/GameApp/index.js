@@ -7,101 +7,118 @@ import Btn from '../components/button';
 
 
 class GameApp extends Component {
-     Arr = [keo,bua,bao]
-     state = {
-         selectType : keo,
-         botType : bao,
-         score : 0,
-         times : 10
-     }
-
-     handleChangeType = (type) => {
-         this.setState({
-             selectType : type
-         })
-     }
-     resultGame = (botType, playerType) => {
-         let bot = botType
-         let player = playerType
-        if (bot === keo) {
-            if (player === keo){
-                alert('Hoa')
-            }else if (player === bao){
-                alert('thua')
-                this.setState({
-                    score : this.state.score - 1,
-                    times : this.state.times -1
-                })
-            }else {
-                alert('thang')
-                this.setState({
-                    score : this.state.score + 1
-                })
-            }    
-     }else if (bot === bua) {
-         if (player ===bua){
-            alert('Hoa')
-         }else if (player === bao){
-            alert('Thua')
-            this.setState({
-                score : this.state.score - 1,
-                times : this.state.times -1
-            })
-         }else {
-            alert('thang')
-            this.setState({
-                score : this.state.score + 1
-            })
-         }
-     }else {
-         if (player === bao) {
-            alert('Hoa')
-         }else if (player === bua){
-            alert('Thua')
-            this.setState({
-                score : this.state.score - 1,
-                times : this.state.times -1
-            })
-         }else {
-            alert('Thang')
-            this.setState({
-                score : this.state.score + 1
-            })
-         }
-     }
+    Arr = [keo, bua, bao]
+    state = {
+        selectType: keo,
+        botType: bao,
+        score: 0,
+        times: 10
     }
-     randomType = () => {
-          let a = Math.floor(Math.random() * 3)
-          this.setState({
-              botType : this.Arr[a]
-          }, () => this.resultGame(this.state.botType,this.state.selectType))
-     }
-     handlePlay = () => {
-         this.randomType()
 
-     }
+    handleChangeType = (type) => {
+        this.setState({
+            selectType: type
+        })
+    }
+    resultGame = (botType, playerType) => {
+        let bot = botType
+        let player = playerType
+        switch (player) {
+            case keo:
+                switch (bot) {
+                    case keo:
+                        alert('Hoa')
+                        break;
+                    case bua:
+                        alert('Thua')
+                        this.setState({
+                            score : this.state.score - 1,
+                            times : this.state.times - 1
+                        })
+                        break;
+                    case bao:
+                        alert('Thang')
+                        this.setState({
+                            score : this.state.score + 1
+                        })
+                        break;
+                }
+                break;
+            case bua:
+                switch (bot) {
+                    case keo:
+                        alert('Thang')
+                        this.setState({
+                            score : this.state.score + 1
+                        })
+                        break;
+                    case bua:
+                        alert('Hoa')
+                        break;
+                    case bao:
+                        alert('Thua')
+                        this.setState({
+                            score : this.state.score - 1,
+                            times : this.state.times - 1
+                        })
+                        break;
+                }
+                break;
+            case bao:
+                switch (bot) {
+                    case keo:
+                        alert('Thua')
+                        this.setState({
+                            score : this.state.score - 1,
+                            times : this.state.times - 1
+                        })
+                        break;
+                    case bua:
+                        alert('Thang')
+                        this.setState({
+                            score : this.state.score + 1
+                        })
+                        break;
+                    case bao:
+                        alert('Hoa')
+                        break;
+                }
+                break;
+        }
+    }
+    randomType = () => {
+        let a = Math.floor(Math.random() * 3)
+        this.setState({
+            botType: this.Arr[a]
+        }, () => this.resultGame(this.state.botType, this.state.selectType))
+    }
+    handlePlay = () => {
+        this.state.times === 0 ? alert('Het luot choi, Reset de choi lai') :
+        this.randomType()
 
-     handleReset = () => {
-         this.setState({
-             score : 0,
-             times : 10
-         })
-     }
+    }
+
+    handleReset = () => {
+        this.setState({
+            score: 0,
+            times: 10
+        })
+    }
     render() {
-        
+
         return (
             <ImageBackground source={bg} style={styles.container} >
                 <View style={styles.overlay}>
                     <StatusBar barStyle='light-content' />
                     <SafeAreaView style={styles.appContent}>
                         <View style={styles.playerView}>
-                            <Player ResultSrc={this.state.selectType}  PlayerSrc={player}/>
-                            <Player ResultSrc={this.state.botType} PlayerSrc={bot}/>
+                            <Player ResultSrc={this.state.selectType} PlayerSrc={player} />
+                            <Player ResultSrc={this.state.botType} PlayerSrc={bot} />
                         </View>
-                        <View style={styles.selectView}>        
+                        <View style={styles.selectView}>
                             {
-                                this.Arr.map((img, index) => <PlayerSelectItem SelectImg={img} 
-                                key={index} handleChangeType={this.handleChangeType}/>)
+                                this.Arr.map((img, index) => <PlayerSelectItem SelectImg={img}
+                                    key={index} handleChangeType={this.handleChangeType} />)
                             }
                         </View>
                         <View style={styles.infoView}>
@@ -111,8 +128,8 @@ class GameApp extends Component {
                             <Text style={styles.infoText}>Times: {this.state.times}</Text>
                         </View>
                         <View style={styles.buttonView}>
-                            <Btn Title = "Play" bgColor = "pink" handleCLickBtn={this.handlePlay}/>
-                            <Btn Title = "Reset" bgColor = "yellow" handleCLickBtn={this.handleReset}/>
+                            <Btn Title="Play" bgColor="pink" handleCLickBtn={this.handlePlay} />
+                            <Btn Title="Reset" bgColor="yellow" handleCLickBtn={this.handleReset} />
                         </View>
                     </SafeAreaView>
                 </View>
@@ -135,34 +152,34 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0, 0, 0, 0.5)'
     },
     appContent: {
-        flex : 1
+        flex: 1
     },
     playerView: {
         flex: 2,
-        flexDirection : 'row',
-        justifyContent : 'space-between',
-        paddingHorizontal : 20
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingHorizontal: 20
     },
     selectView: {
         flex: 0.7,
-        flexDirection : 'row',
-        justifyContent : 'space-around',
-        paddingHorizontal : 40
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        paddingHorizontal: 40
     },
     infoView: {
         flex: 0.6,
-        alignItems : 'center',
+        alignItems: 'center',
     },
     buttonView: {
         flex: 1.4,
-        flexDirection : 'row',
-        justifyContent : 'space-between',
-        paddingHorizontal : 30
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingHorizontal: 30
     },
-    infoText : {
-        color : '#19F7CA',
-        fontSize : 30,
-        fontWeight : '800'
+    infoText: {
+        color: '#19F7CA',
+        fontSize: 30,
+        fontWeight: '800'
     }
 })
 export default GameApp;
