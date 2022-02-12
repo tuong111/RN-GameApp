@@ -27,17 +27,16 @@ class GameApp extends Component {
             case keo:
                 switch (bot) {
                     case keo:
-                        alert('Hoa')
                         break;
                     case bua:
-                        alert('Thua')
+                        // alert('Thua')
                         this.setState({
                             score : this.state.score - 1,
                             times : this.state.times - 1
                         })
                         break;
                     case bao:
-                        alert('Thang')
+                        // alert('Thang')
                         this.setState({
                             score : this.state.score + 1
                         })
@@ -47,16 +46,16 @@ class GameApp extends Component {
             case bua:
                 switch (bot) {
                     case keo:
-                        alert('Thang')
+                        // alert('Thang')
                         this.setState({
                             score : this.state.score + 1
                         })
                         break;
                     case bua:
-                        alert('Hoa')
+                        // alert('Hoa')
                         break;
                     case bao:
-                        alert('Thua')
+                        // alert('Thua')
                         this.setState({
                             score : this.state.score - 1,
                             times : this.state.times - 1
@@ -67,20 +66,20 @@ class GameApp extends Component {
             case bao:
                 switch (bot) {
                     case keo:
-                        alert('Thua')
+                        // alert('Thua')
                         this.setState({
                             score : this.state.score - 1,
                             times : this.state.times - 1
                         })
                         break;
                     case bua:
-                        alert('Thang')
+                        // alert('Thang')
                         this.setState({
                             score : this.state.score + 1
                         })
                         break;
                     case bao:
-                        alert('Hoa')
+                        // alert('Hoa')
                         break;
                 }
                 break;
